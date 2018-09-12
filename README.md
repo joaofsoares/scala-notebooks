@@ -2,4 +2,3 @@
 
  - Spark
 
- - Algorithms
