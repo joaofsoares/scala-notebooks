@@ -1,0 +1,5 @@
+{ "name": "Jane", "role": "recruiter", "depart": 1 } 
+{ "name": "Victor", "role": "designer", "depart": 2 }
+{ "name": "John", "role": "recruiter", "depart": 1 }
+{ "name": "Ana", "role": "programmer", "depart": 2 }
+{ "name": "Mark", "role": "recruiter", "depart": 1 }
