@@ -1,7 +1,7 @@
 """
 PySpark - Word Counter
 
-Execute: spark-submit.cmd --master="local[*]" script_directory/word_counter.py
+Execute: spark-submit.cmd --master="local[*]" script_directory/word_counter.py file_path
 
 """
 
@@ -14,6 +14,7 @@ import sys
 def execute_spark(file_name):
     """
     Execute spark batch
+    file_name - file path
     """
     def is_non_empty(s: str) -> bool:
         """
