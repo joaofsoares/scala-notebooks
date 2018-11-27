@@ -6,3 +6,6 @@
  
 	- Scripts
 	
+	- Pandas
+	
+	- BigData Analysis
