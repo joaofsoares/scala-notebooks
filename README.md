@@ -7,5 +7,7 @@
 	- Scripts
 	
 	- Pandas
+
+	- Numpy
 	
-	- BigData Analysis
+	- Data Science
