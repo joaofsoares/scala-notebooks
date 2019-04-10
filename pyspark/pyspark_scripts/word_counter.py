@@ -2,7 +2,6 @@
 PySpark - Word Counter
 
 Execute: spark-submit.cmd --master="local[*]" script_directory/word_counter.py file_path
-
 """
 
 from pyspark.sql import SparkSession
@@ -22,25 +21,22 @@ def execute_spark(file_name):
         """
         return True if s else False
 
-
     def clean_str(s: str) -> str:
         """
         Clean special characters from the string
         """
         return "".join(filter(lambda c: c.isalnum(), s))
 
-
     spark = SparkSession.builder.appName("Word Counter").getOrCreate()
 
     df = spark.read.option("inferSchema", "true").format("text")\
         .load(file_name)
 
-    m_df = df.rdd.flatMap(lambda row : re.split("\W+", row[0]))\
+    m_df = df.rdd.flatMap(lambda row: re.split("\W+", row[0]))\
         .map(lambda w: clean_str(w))\
         .filter(lambda w: is_non_empty(w))\
         .map(lambda w: (w, 1))\
         .toDF(["word", "count"]).cache()
-
 
     m_df.groupBy("word").count().orderBy(desc("count")).show()
 
