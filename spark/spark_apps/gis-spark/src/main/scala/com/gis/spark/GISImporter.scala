@@ -14,12 +14,17 @@ object GISImporter extends App {
 
   import org.apache.spark.sql.functions._
 
-  dataFrame.select(col("properties.BLKLOT"), col("properties.BLOCK_NUM"),
-    col("properties.FROM_ST"), col("properties.LOT_NUM"),
-    col("properties.MAPBLKLOT"), col("properties.ODD_EVEN"),
-    col("properties.STREET"), col("properties.ST_TYPE"),
-    col("properties.TO_ST"), col("type"), col("geometry.type"),
-    explode(col("geometry.coordinates"))).show()
+  val dataFrameGeom = dataFrame.select(col("type"), col("properties.BLKLOT"),
+    col("properties.BLOCK_NUM"), col("properties.FROM_ST"),
+    col("properties.LOT_NUM"), col("properties.MAPBLKLOT"),
+    col("properties.ODD_EVEN"), col("properties.STREET"),
+    col("properties.ST_TYPE"), col("properties.TO_ST"),
+    col("geometry.type"), explode(col("geometry.coordinates")))
+    .toDF("TYPE", "BLK_LOT", "BLK_NUM", "FROM_ST", "LOT_NUM", "MAP_BLK_LOT", "ODD_EVEN", "STREET",
+      "ST_TYPE", "TO_ST", "GEOM_TYPE", "GEOM")
+
+
+  dataFrameGeom.show()
 
   spark.stop()
 
